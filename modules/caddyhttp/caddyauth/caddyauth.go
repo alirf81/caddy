@@ -85,8 +85,7 @@ func (a Authentication) ServeHTTP(w http.ResponseWriter, r *http.Request, next c
 		}
 	}
 	if !authed {
-		// return caddyhttp.Error(http.StatusUnauthorized, fmt.Errorf("not authenticated"))
-		return nil
+		return caddyhttp.Error(http.StatusUnauthorized, fmt.Errorf("not authenticated"))
 	}
 
 	repl := r.Context().Value(caddy.ReplacerCtxKey).(*caddy.Replacer)
